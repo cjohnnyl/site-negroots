@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Negroots Studio e Barbearia | Estilo e Cultura</title>
+    <style>
+        /* =========================================
+           RESET E VARIÁVEIS GERAIS
+           ========================================= */
+        :root {
+            --bg-body: #050505;
+            --bg-card: #141414;
+            --bg-input: #1f1f1f;
+            --primary: #FFD700; /* Amarelo Ouro */
+            --primary-hover: #e6c200;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --danger: #ff4d4d;
+            --success: #28a745;
+            --font-heading: 'Impact', 'Arial Black', sans-serif;
+            --font-body: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --radius: 8px;
+            --shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; border-radius: var(--radius); }
+
+        /* =========================================
+           COMPONENTES
+           ========================================= */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: #000;
+            padding: 12px 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: var(--radius);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: #000;
+        }
+
+        .btn-small {
+            padding: 5px 10px;
+            font-size: 0.8rem;
+        }
+
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+        .btn-danger:hover { background-color: #cc0000; }
+
+        .section-title {
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* Inputs e Formulários */
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            background-color: var(--bg-input);
+            border: 1px solid #333;
+            border-radius: var(--radius);
+            color: white;
+            font-family: var(--font-body);
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* =========================================
+           HEADER & NAV
+           ========================================= */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(5, 5, 5, 0.95);
+            z-index: 1000;
+            border-bottom: 1px solid #222;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--text-main);
+        }
+        .logo span { color: var(--primary); }
+
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-link {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .nav-link:hover { color: var(--primary); }
+
+        /* Menu Mobile */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* =========================================
+           HERO SECTION
+           ========================================= */
+        .hero {
+            height: 100vh;
+            /* Nova imagem com vibe urbana, barbearia, afro */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=2074&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #ddd;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* =========================================
+           SERVIÇOS
+           ========================================= */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-left: 3px solid var(--primary);
+        }
+
+        .service-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .service-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 15px;
+            display: block;
+        }
+
+        /* =========================================
+           PORTFÓLIO
+           ========================================= */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            height: 300px;
+            border-radius: var(--radius);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+
+        /* =========================================
+           DEPOIMENTOS
+           ========================================= */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .stars { color: var(--primary); margin-bottom: 10px; }
+
+        /* =========================================
+           AGENDAMENTO (CALENDÁRIO)
+           ========================================= */
+        .booking-container {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: var(--radius);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .slots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .slot-btn {
+            background-color: #2a2a2a;
+            color: white;
+            border: 1px solid #444;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .slot-btn:hover:not(:disabled) {
+            background-color: var(--primary);
+            color: black;
+            border-color: var(--primary);
+        }
+
+        .slot-btn.selected {
+            background-color: var(--primary);
+            color: black;
+            font-weight: bold;
+        }
+
+        .slot-btn:disabled {
+            background-color: #111;
+            color: #444;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+
+        .hidden { display: none; }
+
+        .form-feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: var(--radius);
+            text-align: center;
+        }
+        .feedback-success { background-color: rgba(40, 167, 69, 0.2); border: 1px solid var(--success); color: var(--success); }
+        .feedback-error { background-color: rgba(255, 77, 77, 0.2); border: 1px solid var(--danger); color: var(--danger); }
+
+        /* =========================================
+           LOCALIZAÇÃO & CONTATO
+           ========================================= */
+        .map-responsive {
+            overflow: hidden;
+            padding-bottom: 56.25%;
+            position: relative;
+            height: 0;
+            border-radius: var(--radius);
+        }
+        .map-responsive iframe {
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            border: 0;
+            filter: grayscale(100%) invert(92%) contrast(83%);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .contact-info-item {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        .contact-info-item strong { color: var(--primary); }
+
+        /* =========================================
+           FAQ
+           ========================================= */
+        .accordion-item {
+            background-color: var(--bg-card);
+            margin-bottom: 10px;
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+        .accordion-header {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+        }
+        .accordion-header:hover { color: var(--primary); }
+        .accordion-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s;
+            color: var(--text-muted);
+        }
+        .accordion-content.active {
+            padding-bottom: 20px;
+            max-height: 200px;
+        }
+
+        /* =========================================
+           FOOTER
+           ========================================= */
+        footer {
+            background-color: black;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+        .admin-link {
+            display: block;
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #333;
+            cursor: pointer;
+        }
+        .admin-link:hover { color: var(--primary); }
+
+        /* =========================================
+           ADMIN MODAL & PAINEL
+           ========================================= */
+        .modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .modal.open { opacity: 1; pointer-events: all; }
+        
+        .modal-content {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: var(--radius);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid var(--primary);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+        }
+
+        .admin-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .admin-table th, .admin-table td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #333;
+        }
+        .admin-table th { color: var(--primary); }
+        
+        .days-config {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            background: #222;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        /* =========================================
+           RESPONSIVIDADE
+           ========================================= */
+        @media (max-width: 1024px) {
+            .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-content h1 { font-size: 3rem; }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                background-color: var(--bg-card);
+                flex-direction: column;
+                width: 70%;
+                height: 100vh;
+                padding: 40px;
+                transition: right 0.3s;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+            }
+            .nav-menu.active { right: 0; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">NEGROOTS <span>STUDIO</span></div>
+            <div class="hamburger" id="hamburger">☰</div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#inicio" class="nav-link">Início</a></li>
+                <li><a href="#servicos" class="nav-link">Serviços</a></li>
+                <li><a href="#portfolio" class="nav-link">Portfólio</a></li>
+                <li><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
+                <li><a href="#agendamento" class="btn-small btn" style="color:black;">Agendar</a></li>
+                <li><a href="#localizacao" class="nav-link">Local</a></li>
+                <li><a href="#contato" class="nav-link">Contato</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="inicio" class="hero">
+        <div class="container hero-content">
+            <h1>Estilo, Cultura e<br>Respeito à Raiz</h1>
+            <p>Especialistas em cortes afro, black power e tranças. Mergulhe na vibe do Hip Hop e R&B com o melhor atendimento urbano.</p>
+            <a href="#agendamento" class="btn">Agendar Agora</a>
+            <br><br>
+            <a href="#calendario-scroll" style="font-size: 0.8rem; color: #aaa; border-bottom: 1px solid #aaa;">Ver disponibilidade</a>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section id="servicos">
+        <div class="container">
+            <h2 class="section-title">Serviços & Preços</h2>
+            <p class="section-subtitle">Qualidade e estilo para quem exige o melhor.</p>
+            
+            <div class="services-grid">
+                <!-- Card 1 -->
+                <div class="card">
+                    <h3 class="service-title">Corte Afro / Degradê</h3>
+                    <p>Acabamento perfeito na régua, navalhado ou na máquina. Inclui lavagem e finalização.</p>
+                    <span class="service-price">R$ 50,00</span>
+                </div>
+                <!-- Card 2 -->
+                <div class="card">
+                    <h3 class="service-title">Barba Desenhada</h3>
+                    <p>Design de barba com toalha quente, alinhamento dos fios e hidratação.</p>
+                    <span class="service-price">R$ 35,00</span>
+                </div>
+                <!-- Card 3 -->
+                <div class="card">
+                    <h3 class="service-title">Combo Completo</h3>
+                    <p>Corte + Barba + Sobrancelha. O tratamento VIP completo.</p>
+                    <span class="service-price">R$ 75,00</span>
+                </div>
+                <!-- Card 4 -->
+                <div class="card">
+                    <h3 class="service-title">Black Power / Nudred</h3>
+                    <p>Corte estruturado para dar volume e forma, com finalização na esponja nudred.</p>
+                    <span class="service-price">R$ 60,00</span>
+                </div>
+                <!-- Card 5 -->
+                <div class="card">
+                    <h3 class="service-title">Tranças (Nagô/Box)</h3>
+                    <p>Tranças masculinas estilosas e firmes. (Consultar tempo de execução).</p>
+                    <span class="service-price">A partir de R$ 80,00</span>
+                </div>
+                <!-- Card 6 -->
+                <div class="card">
+                    <h3 class="service-title">Pigmentação</h3>
+                    <p>Realce dos contornos do cabelo e barba com tinta específica temporária.</p>
+                    <span class="service-price">R$ 25,00</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfólio -->
+    <section id="portfolio" style="background-color: #0a0a0a;">
+        <div class="container">
+            <h2 class="section-title">Portfólio</h2>
+            <p class="section-subtitle">Nosso trabalho fala por nós.</p>
+
+            <div class="portfolio-grid">
+                <!-- Imagens placeholder de cortes -->
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1593726891001-c583f707038e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Corte Afro">
+                    <div class="portfolio-overlay"><h4>Degradê Navalhado</h4></div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Barba">
+                    <div class="portfolio-overlay"><h4>Barba Lenhador</h4></div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1534351394645-12cf51543888?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Nudred">
+                    <div class="portfolio-overlay"><h4>Nudred Sponge</h4></div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1588636906236-4122d667c4e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Tranças">
+                    <div class="portfolio-overlay"><h4>Tranças Masculinas</h4></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section id="depoimentos">
+        <div class="container">
+            <h2 class="section-title">A Responsa</h2>
+            <p class="section-subtitle">O que os clientes dizem sobre o Negroots Studio.</p>
+            <div class="testimonials-grid">
+                <div class="card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Melhor degradê da região. O ambiente é muito massa, toca só hip hop de qualidade e o atendimento é nota 10."</p>
+                    <br><small>— Lucas M.</small>
+                </div>
+                <div class="card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Finalmente achei um lugar que sabe cuidar de cabelo afro de verdade. As tranças ficaram perfeitas."</p>
+                    <br><small>— João Pedro</small>
+                </div>
+                <div class="card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Profissionalismo total. Agendei pelo site, cheguei e fui atendido na hora. Sem chá de cadeira."</p>
+                    <br><small>— Marcos Silva</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agendamento / Calendário -->
+    <section id="agendamento" class="booking-section">
+        <div id="calendario-scroll"></div>
+        <div class="container">
+            <h2 class="section-title">Agende seu Horário</h2>
+            <p class="section-subtitle">Rápido, fácil e garantido.</p>
+
+            <div class="booking-container">
+                <!-- Passo 1: Selecionar Data -->
+                <label for="booking-date">Escolha uma data:</label>
+                <input type="date" id="booking-date">
+
+                <div id="slots-container" class="hidden">
+                    <p style="margin-bottom: 10px;">Horários disponíveis para <span id="display-date" style="color:var(--primary)"></span>:</p>
+                    <div id="slots-grid" class="slots-grid">
+                        <!-- Slots gerados via JS -->
+                    </div>
+                </div>
+
+                <!-- Passo 2: Formulário -->
+                <div id="booking-form" class="hidden">
+                    <h3 style="color:var(--primary); margin-bottom: 15px;">Confirmar Agendamento</h3>
+                    <p style="margin-bottom: 15px;">Horário selecionado: <strong id="selected-time-display">--:--</strong></p>
+                    
+                    <input type="text" id="client-name" placeholder="Seu Nome Completo">
+                    <input type="tel" id="client-phone" placeholder="Seu WhatsApp (xx) 9xxxx-xxxx">
+                    
+                    <select id="client-service">
+                        <option value="">Selecione o Serviço</option>
+                        <option value="Corte Degradê">Corte Degradê - R$ 50</option>
+                        <option value="Barba">Barba - R$ 35</option>
+                        <option value="Combo">Combo (Corte+Barba) - R$ 75</option>
+                        <option value="Black Power">Black Power - R$ 60</option>
+                        <option value="Tranças">Tranças - A partir de R$ 80</option>
+                    </select>
+
+                    <button class="btn" style="width: 100%;" onclick="confirmBooking()">Confirmar Agendamento</button>
+                    <div id="booking-feedback" class="form-feedback hidden"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Localização -->
+    <section id="localizacao" style="background-color: #0a0a0a;">
+        <div class="container">
+            <h2 class="section-title">Onde Estamos</h2>
+            <p class="section-subtitle">Cole na nossa base.</p>
+            <p style="text-align: center; margin-bottom: 20px;">Rua da Cultura Negra, 1990 - Centro, São Paulo - SP</p>
+            
+            <div class="map-responsive">
+                <!-- Iframe do Google Maps (Endereço Genérico: Galeria do Rock/Centro SP) -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.256847833596!2d-46.63863492383562!3d-23.54422786151327!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce585317f23c27%3A0xc39281e7d806a6c0!2sS%C3%A3o%20Paulo%2C%20SP!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" width="600" height="450" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="https://maps.google.com" target="_blank" class="btn btn-outline">Abrir no GPS</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato">
+        <div class="container">
+            <h2 class="section-title">Contato</h2>
+            <div class="contact-grid">
+                <div>
+                    <div class="contact-info-item">
+                        <strong>WhatsApp:</strong><br> (11) 99999-9999
+                    </div>
+                    <div class="contact-info-item">
+                        <strong>Instagram:</strong><br> @negrootsstudio
+                    </div>
+                    <div class="contact-info-item">
+                        <strong>Horário Padrão:</strong><br> Seg a Sex: 09h às 19h<br>Sáb: 09h às 16h
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; justify-content: center;">
+                    <a href="https://wa.me/5511999999999?text=Salve%20Negroots!%20Quero%20agendar%20um%20horário." target="_blank" class="btn" style="text-align: center; margin-bottom: 10px;">Chamar no WhatsApp</a>
+                    <a href="#" class="btn btn-outline" style="text-align: center;">Seguir no Instagram</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" style="background-color: #0a0a0a;">
+        <div class="container" style="max-width: 800px;">
+            <h2 class="section-title" style="font-size: 2rem;">Dúvidas Frequentes</h2>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Como funciona o agendamento online?</div>
+                <div class="accordion-content">
+                    <p>Basta escolher a data e o horário disponível no calendário acima, preencher seus dados e confirmar. Simples assim!</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">Posso cancelar ou remarcar?</div>
+                <div class="accordion-content">
+                    <p>Sim, pedimos que cancele com pelo menos 2 horas de antecedência entrando em contato pelo WhatsApp.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">Tem tolerância de atraso?</div>
+                <div class="accordion-content">
+                    <p>Tolerância máxima de 10 minutos. Após isso, o horário pode ser repassado para encaixe.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo" style="margin-bottom: 10px;">NEGROOTS</div>
+            <p style="color: #666; font-size: 0.9rem;">Respeitando raízes, criando estilo. Cultura Hip Hop e R&B.</p>
+            <p style="color: #444; font-size: 0.8rem; margin-top: 20px;">&copy; 2023 Negroots Studio e Barbearia. Todos os direitos reservados.</p>
+            <a class="admin-link" id="btn-admin-login">Área do Administrador</a>
+        </div>
+    </footer>
+
+    <!-- MODAL ADMIN -->
+    <div id="admin-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-admin">&times;</span>
+            
+            <!-- TELA LOGIN -->
+            <div id="admin-login-screen">
+                <h2 style="color: var(--primary); text-align: center;">Acesso Restrito</h2>
+                <input type="password" id="admin-pass" placeholder="Senha do Administrador" style="margin-top: 20px;">
+                <button class="btn" onclick="checkAdmin()" style="width: 100%;">Entrar</button>
+                <p id="login-error" style="color: var(--danger); text-align: center; margin-top: 10px;" class="hidden">Senha incorreta.</p>
+            </div>
+
+            <!-- TELA PAINEL -->
+            <div id="admin-panel" class="hidden">
+                <h2 style="color: var(--primary); border-bottom: 2px solid #333; padding-bottom: 10px;">Painel de Controle</h2>
+
+                <!-- Configuração -->
+                <div class="admin-section">
+                    <h3>Configurar Dias e Horários</h3>
+                    <p style="font-size: 0.9rem; color: #888; margin-bottom: 10px;">Marque os dias de funcionamento.</p>
+                    
+                    <div class="days-config" id="admin-days-container">
+                        <!-- Gerado via JS -->
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div>
+                            <label>Abertura:</label>
+                            <input type="time" id="admin-open-time">
+                        </div>
+                        <div>
+                            <label>Fechamento:</label>
+                            <input type="time" id="admin-close-time">
+                        </div>
+                    </div>
+                    <button class="btn btn-small" onclick="saveConfig()">Salvar Configuração</button>
+                    <span id="config-msg" class="hidden" style="color: var(--success); margin-left: 10px;">Salvo!</span>
+                </div>
+
+                <!-- Gestão de Agendamentos -->
+                <div class="admin-section">
+                    <h3>Agendamentos</h3>
+                    <label>Filtrar por data:</label>
+                    <input type="date" id="admin-filter-date" onchange="loadAdminAppointments()">
+                    
+                    <div style="overflow-x: auto;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Hora</th>
+                                    <th>Cliente</th>
+                                    <th>Contato</th>
+                                    <th>Serviço</th>
+                                    <th>Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-appointments-list">
+                                <!-- JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <button class="btn btn-outline" onclick="logoutAdmin()">Sair</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* =========================================
+           ESTADO & LOCALSTORAGE
+           ========================================= */
+        const STORAGE_KEYS = {
+            CONFIG: 'negroots_config',
+            APPOINTMENTS: 'negroots_agendamentos'
+        };
+
+        const DEFAULT_CONFIG = {
+            openDays: { // 0=Domingo, 1=Segunda...
+                0: false, 1: true, 2: true, 3: true, 4: true, 5: true, 6: true 
+            },
+            openTime: "09:00",
+            closeTime: "19:00"
+        };
+
+        // Carregar config ou usar padrão
+        function getConfig() {
+            const stored = localStorage.getItem(STORAGE_KEYS.CONFIG);
+            return stored ? JSON.parse(stored) : DEFAULT_CONFIG;
+        }
+
+        // Carregar agendamentos
+        function getAppointments() {
+            const stored = localStorage.getItem(STORAGE_KEYS.APPOINTMENTS);
+            return stored ? JSON.parse(stored) : [];
+        }
+
+        // Salvar config
+        function saveConfigToStorage(config) {
+            localStorage.setItem(STORAGE_KEYS.CONFIG, JSON.stringify(config));
+        }
+
+        // Salvar lista de agendamentos
+        function saveAppointmentsToStorage(list) {
+            localStorage.setItem(STORAGE_KEYS.APPOINTMENTS, JSON.stringify(list));
+        }
+
+        /* =========================================
+           INTERFACE E NAVEGAÇÃO
+           ========================================= */
+        // Menu Mobile
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Accordion FAQ
+        const accordions = document.querySelectorAll('.accordion-header');
+        accordions.forEach(acc => {
+            acc.addEventListener('click', () => {
+                const content = acc.nextElementSibling;
+                content.classList.toggle('active');
+            });
+        });
+
+        /* =========================================
+           SISTEMA DE AGENDAMENTO (CLIENTE)
+           ========================================= */
+        const dateInput = document.getElementById('booking-date');
+        const slotsContainer = document.getElementById('slots-container');
+        const slotsGrid = document.getElementById('slots-grid');
+        const displayDate = document.getElementById('display-date');
+        const bookingForm = document.getElementById('booking-form');
+        const selectedTimeDisplay = document.getElementById('selected-time-display');
+        let currentSelectedSlot = null;
+
+        // Definir data mínima como hoje
+        const todayStr = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', todayStr);
+
+        dateInput.addEventListener('change', (e) => {
+            const dateStr = e.target.value;
+            if (!dateStr) return;
+            renderSlots(dateStr);
+        });
+
+        function renderSlots(dateStr) {
+            const config = getConfig();
+            const appointments = getAppointments();
+            const dateObj = new Date(dateStr + 'T00:00:00');
+            const dayOfWeek = dateObj.getDay(); // 0-6
+
+            // Resetar UI
+            slotsGrid.innerHTML = '';
+            bookingForm.classList.add('hidden');
+            currentSelectedSlot = null;
+            document.getElementById('booking-feedback').classList.add('hidden');
+
+            displayDate.textContent = dateObj.toLocaleDateString('pt-BR');
+            slotsContainer.classList.remove('hidden');
+
+            // Verificar se a barbearia abre neste dia
+            if (!config.openDays[dayOfWeek]) {
+                slotsGrid.innerHTML = '<p style="color: #888; grid-column: 1/-1;">A barbearia está fechada nesta data.</p>';
+                return;
+            }
+
+            // Gerar horários de hora em hora
+            let [startHour, startMin] = config.openTime.split(':').map(Number);
+            let [endHour, endMin] = config.closeTime.split(':').map(Number);
+            
+            // converter tudo para minutos para facilitar loop
+            let currentMinutes = startHour * 60 + startMin;
+            const endMinutes = endHour * 60 + endMin;
+
+            // Filtrar agendamentos do dia
+            const dailyAppointments = appointments.filter(app => app.date === dateStr);
+            const busyTimes = dailyAppointments.map(app => app.time);
+
+            let hasSlots = false;
+
+            while (currentMinutes < endMinutes) {
+                const h = Math.floor(currentMinutes / 60);
+                const m = currentMinutes % 60;
+                const timeStr = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+                
+                // Verificar se slot está no passado (se for hoje)
+                const now = new Date();
+                const isToday = (dateStr === todayStr);
+                const isPast = isToday && (h < now.getHours() || (h === now.getHours() && m <= now.getMinutes()));
+
+                const isBusy = busyTimes.includes(timeStr);
+                
+                const btn = document.createElement('button');
+                btn.className = 'slot-btn';
+                btn.textContent = timeStr;
+
+                if (isBusy || isPast) {
+                    btn.disabled = true;
+                    if(isBusy) btn.title = "Horário Ocupado";
+                    if(isPast) btn.title = "Horário já passou";
+                } else {
+                    btn.onclick = () => selectSlot(timeStr, btn);
+                    hasSlots = true;
+                }
+
+                slotsGrid.appendChild(btn);
+                currentMinutes += 60; // Incremento de 60 min (pode ser config)
+            }
+
+            if (!hasSlots && slotsGrid.children.length > 0) {
+                 // Se todos estão disabled
+                 const allDisabled = Array.from(slotsGrid.children).every(c => c.disabled);
+                 if(allDisabled) {
+                     const msg = document.createElement('p');
+                     msg.style.gridColumn = "1/-1";
+                     msg.style.color = "#888";
+                     msg.textContent = "Não há mais horários disponíveis para hoje.";
+                     slotsGrid.appendChild(msg);
+                 }
+            }
+        }
+
+        function selectSlot(time, btnElement) {
+            // UI Update
+            document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('selected'));
+            btnElement.classList.add('selected');
+            
+            currentSelectedSlot = time;
+            selectedTimeDisplay.textContent = time;
+            bookingForm.classList.remove('hidden');
+            
+            // Scroll suave para o form
+            bookingForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function confirmBooking() {
+            const name = document.getElementById('client-name').value.trim();
+            const phone = document.getElementById('client-phone').value.trim();
+            const service = document.getElementById('client-service').value;
+            const dateStr = dateInput.value;
+            const feedback = document.getElementById('booking-feedback');
+
+            feedback.className = 'form-feedback'; // reset classes
+
+            // Validação simples
+            if (!name || !phone || !service || !currentSelectedSlot) {
+                feedback.textContent = "Preencha todos os campos e selecione um horário.";
+                feedback.classList.add('feedback-error');
+                feedback.classList.remove('hidden');
+                return;
+            }
+
+            // Validar disponibilidade novamente (race condition simulation)
+            const appointments = getAppointments();
+            const exists = appointments.find(a => a.date === dateStr && a.time === currentSelectedSlot);
+
+            if (exists) {
+                feedback.textContent = "Ops! Este horário acabou de ser reservado. Escolha outro.";
+                feedback.classList.add('feedback-error');
+                feedback.classList.remove('hidden');
+                renderSlots(dateStr); // Recarregar
+                return;
+            }
+
+            // Salvar
+            const newAppointment = {
+                id: Date.now().toString(),
+                date: dateStr,
+                time: currentSelectedSlot,
+                client: name,
+                phone: phone,
+                service: service,
+                createdAt: new Date().toISOString()
+            };
+
+            appointments.push(newAppointment);
+            saveAppointmentsToStorage(appointments);
+
+            // Sucesso
+            feedback.textContent = `Agendado com sucesso para ${dateStr} às ${currentSelectedSlot}!`;
+            feedback.classList.add('feedback-success');
+            feedback.classList.remove('hidden');
+
+            // Bloquear visualmente
+            const selectedBtn = document.querySelector('.slot-btn.selected');
+            if(selectedBtn) {
+                selectedBtn.disabled = true;
+                selectedBtn.classList.remove('selected');
+            }
+
+            // Limpar form após 2 segundos
+            setTimeout(() => {
+                document.getElementById('client-name').value = '';
+                document.getElementById('client-phone').value = '';
+                document.getElementById('client-service').value = '';
+                bookingForm.classList.add('hidden');
+                feedback.classList.add('hidden');
+                renderSlots(dateStr); // Atualizar grid
+            }, 3000);
+        }
+
+        /* =========================================
+           ÁREA ADMINISTRATIVA
+           ========================================= */
+        const adminModal = document.getElementById('admin-modal');
+        const btnAdminLogin = document.getElementById('btn-admin-login');
+        const closeAdmin = document.getElementById('close-admin');
+        const adminLoginScreen = document.getElementById('admin-login-screen');
+        const adminPanel = document.getElementById('admin-panel');
+
+        btnAdminLogin.onclick = () => {
+            adminModal.classList.add('open');
+            // Se já estiver logado na sessão (simples), mostrar painel
+            // Aqui vamos forçar login sempre por segurança básica no front
+            adminLoginScreen.classList.remove('hidden');
+            adminPanel.classList.add('hidden');
+            document.getElementById('admin-pass').value = '';
+            document.getElementById('login-error').classList.add('hidden');
+        };
+
+        closeAdmin.onclick = () => {
+            adminModal.classList.remove('open');
+        };
+
+        // Fechar ao clicar fora
+        window.onclick = (e) => {
+            if (e.target == adminModal) {
+                adminModal.classList.remove('open');
+            }
+        };
+
+        function checkAdmin() {
+            const pass = document.getElementById('admin-pass').value;
+            if (pass === 'admin123') { // SENHA HARDCODED
+                adminLoginScreen.classList.add('hidden');
+                adminPanel.classList.remove('hidden');
+                initAdminPanel();
+            } else {
+                document.getElementById('login-error').classList.remove('hidden');
+            }
+        }
+
+        function logoutAdmin() {
+            adminModal.classList.remove('open');
+        }
+
+        function initAdminPanel() {
+            const config = getConfig();
+            
+            // Render checkboxes dias
+            const daysContainer = document.getElementById('admin-days-container');
+            daysContainer.innerHTML = '';
+            const dayNames = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+            
+            dayNames.forEach((name, idx) => {
+                const checked = config.openDays[idx] ? 'checked' : '';
+                const div = document.createElement('div');
+                div.innerHTML = `
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="day-${idx}" ${checked}> ${name}
+                    </label>
+                `;
+                daysContainer.appendChild(div);
+            });
+
+            // Set inputs time
+            document.getElementById('admin-open-time').value = config.openTime;
+            document.getElementById('admin-close-time').value = config.closeTime;
+
+            // Set data filtro para hoje
+            document.getElementById('admin-filter-date').value = todayStr;
+            loadAdminAppointments();
+        }
+
+        function saveConfig() {
+            const config = {
+                openDays: {},
+                openTime: document.getElementById('admin-open-time').value,
+                closeTime: document.getElementById('admin-close-time').value
+            };
+
+            for (let i = 0; i < 7; i++) {
+                const chk = document.getElementById(`day-${i}`);
+                config.openDays[i] = chk.checked;
+            }
+
+            saveConfigToStorage(config);
+            
+            const msg = document.getElementById('config-msg');
+            msg.classList.remove('hidden');
+            setTimeout(() => msg.classList.add('hidden'), 2000);
+        }
+
+        function loadAdminAppointments() {
+            const filterDate = document.getElementById('admin-filter-date').value;
+            const listBody = document.getElementById('admin-appointments-list');
+            listBody.innerHTML = '';
+
+            const appointments = getAppointments();
+            // Filtrar pela data e ordenar por hora
+            const filtered = appointments
+                .filter(a => a.date === filterDate)
+                .sort((a,b) => a.time.localeCompare(b.time));
+
+            if (filtered.length === 0) {
+                listBody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#888;">Nenhum agendamento para este dia.</td></tr>';
+                return;
+            }
+
+            filtered.forEach(app => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${app.time}</td>
+                    <td>${app.client}</td>
+                    <td>${app.phone}</td>
+                    <td>${app.service}</td>
+                    <td>
+                        <button class="btn-small btn-danger" style="border:none; cursor:pointer;" onclick="deleteAppointment('${app.id}')">X</button>
+                    </td>
+                `;
+                listBody.appendChild(tr);
+            });
+        }
+
+        function deleteAppointment(id) {
+            if (!confirm('Tem certeza que deseja cancelar este agendamento?')) return;
+            
+            let appointments = getAppointments();
+            appointments = appointments.filter(a => a.id !== id);
+            saveAppointmentsToStorage(appointments);
+            
+            loadAdminAppointments();
+            
+            // Se estiver vendo a mesma data no calendário do cliente, atualizar lá também
+            if (dateInput.value) {
+                renderSlots(dateInput.value);
+            }
+        }
+
+    </script>
+</body>
+</html>
